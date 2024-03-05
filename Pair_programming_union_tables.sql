@@ -28,7 +28,7 @@ ON pd.customer_id = cs.customer_id
 WHERE ship_country = 'UK'
 GROUP BY customer_id;
 
-/* Productos pedidos por empresa en UK por año:
+/* 2 Productos pedidos por empresa en UK por año:
 Desde Reino Unido se quedaron muy contentas con nuestra rápida respuesta a su petición anterior y han decidido pedirnos una serie 
 de consultas adicionales. La primera de ellas consiste en una query que nos sirva para conocer cuántos objetos 
 ha pedido cada empresa cliente de UK durante cada año. Nos piden concretamente conocer el nombre de la empresa, el año, y la cantidad 
@@ -63,3 +63,22 @@ FROM customers;
 
 -- customer_id
 -- company_name
+
+/*
+Mejorad la query anterior:
+Lo siguiente que nos han pedido es la misma consulta anterior pero con la adición de la cantidad de dinero que han pedido por esa 
+cantidad de objetos, teniendo en cuenta los descuentos, etc. Ojo que los descuentos en nuestra tabla nos salen en porcentajes, 
+15% nos sale como 0.15.
+*/
+
+SELECT(YEAR(order_date)) AS anyo, 
+				customer_id, 
+                company_name, 
+                SUM(quantity) AS Q, 
+                SUM((unit_price * quantity) * (1-discount)) AS Total
+FROM orders AS pd
+	INNER JOIN order_details AS dt ON pd.order_id = dt.order_id
+	INNER JOIN customers AS cst ON pd.customer_id = cst.customer_id
+WHERE ship_country = 'UK'
+GROUP BY YEAR(order_date),customer_id, company_name;
+
