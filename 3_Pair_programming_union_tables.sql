@@ -65,7 +65,7 @@ FROM customers;
 -- company_name
 
 /*
-Mejorad la query anterior:
+3. Mejorad la query anterior:
 Lo siguiente que nos han pedido es la misma consulta anterior pero con la adición de la cantidad de dinero que han pedido por esa 
 cantidad de objetos, teniendo en cuenta los descuentos, etc. Ojo que los descuentos en nuestra tabla nos salen en porcentajes, 
 15% nos sale como 0.15.

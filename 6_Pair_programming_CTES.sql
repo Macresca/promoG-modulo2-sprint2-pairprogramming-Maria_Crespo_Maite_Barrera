@@ -75,7 +75,7 @@ AS (SELECT product_id, AVG(quantity) AS `Media_Q`
                         ON sum_cantidades.product_id = products.product_id;
                    
 /*
-Usando una CTE, extraer el nombre de las diferentes categorías de productos, con su precio medio, máximo y mínimo.
+6.Usando una CTE, extraer el nombre de las diferentes categorías de productos, con su precio medio, máximo y mínimo.
 */
 
 -- Nombre categoría
