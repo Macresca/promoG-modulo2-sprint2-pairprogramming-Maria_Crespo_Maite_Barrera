@@ -31,7 +31,7 @@ SELECT product_id, product_name,unit_price
 FROM products
 WHERE product_id < 10 AND unit_price < 15;
 
--- 8. Ahora vamos a hacer la misma consulta que en ejercicio anterior, pero haciendo invirtiendo el uso de los operadores 
+-- 8. Ahora vamos a hacer la misma consulta que en ejercicio anterior, pero invirtiendo el uso de los operadores 
 -- y queremos saber aquellos que tengan un precio superior a 15 dólares y un ID superior a 10
 
 SELECT product_id, product_name, unit_price
@@ -98,5 +98,26 @@ SELECT category_id, category_name AS 'NombredeCategoria'
 FROM categories;
 
 -- 16. Selecciona envios con retraso:
--- cuál sería la fecha de envío (ShippedDate) de los pedidos almacenados en la base de datos, 
--- si estos sufrieran un retraso de 5 días. Nos piden mostrar la nueva fecha renombrada como FechaRetrasada.
+-- Nos hacen llegar desde la dirección la preocupación acerca del cumplimiento de las fechas de envío. Últimamente se están dando 
+-- retrasos en muchas entregas y por ello se busca realizar la acción preventiva de enviar los paquetes con varios días adicionales de antelación. 
+-- Para comenzar a planear esos envíos anticipados, nos piden conocer cuál sería la fecha de envío (ShippedDate) de los pedidos almacenados 
+-- en la base de datos, si estos sufrieran un retraso de 5 días. Nos piden mostrar la nueva fecha renombrada como FechaRetrasada.
+
+SELECT shipped_date AS FechaRetrasada
+FROM orders;
+
+-- 17. Selecciona los productos más rentables: Gracias a un análisis realizado en los últimos meses en la empresa, se ha comprobado que el rango de productos que 
+-- que puede dar más beneficios parece ser el de aquellos con un precio mayor o igual a 15 dólares, pero menor o igual a 50. Selecciona los datos de ese rango de 
+-- de productos usando BETWEEN.
+
+SELECT unit_price AS Productos_mas_rentables
+FROM products
+WHERE unit_price BETWEEN 15 AND 50;
+
+-- 18. Selecciona los productos con unos precios dados:
+-- Queremos conocer los datos de los productos que tengan exactamente un precio de 18, 19 o 20 dólares (un rango muy concreto del que la empresa 
+-- quiere maximizar sus ventas en el futuro). Usa IN para conseguirlo de manera eficiente.
+
+SELECT product_id, product_name, unit_price
+FROM products
+WHERE unit_price IN (18, 19, 20);
